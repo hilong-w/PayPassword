@@ -27,7 +27,10 @@
 				</view>
 			</swiper-item>
 			<swiper-item key="1">
-				<view data-scindex="1" style="height: 100%;box-sizing: border-box;position: relative;">
+				<view data-scindex="1">
+					<view class="keyboard-container">
+						<uni-keyboard @completed="done" ref="keyboard"></uni-keyboard>
+					</view>
 					<view class="payment-container">
 						<view class="payment mt-10" hover-class="payment-active">
 							<view>
@@ -54,7 +57,6 @@
 					<view class="button-box mt-10">
 						<button @tap="confirmPwd" type="primary">预计两小时内到账，确认提现</button>
 					</view>
-					<uni-keyboard @completed="done" ref="keyboard" class="mt-10"></uni-keyboard>
 				</view>
 			</swiper-item>
 		</swiper>
@@ -81,7 +83,8 @@
 					//标签名称 , 分类 id , 加载更多, 加载的页码
 					{ name: '支付密码一', id: 'pwd1', loadingType: 0, page: 1 },
 					{ name: '支付密码二', id: 'pwd2', loadingType: 0, page: 1 }
-				]
+				],
+				showKeyboard: false
 			}
 		},
 		onLoad() {
@@ -137,6 +140,12 @@
 <style>
 	page {
 		background: #f2f2f2;
+	}
+	.keyboard-container {
+		position: absolute;
+		top:0;
+		height: 100%;
+		width: 100%;
 	}
 	uni-button[type=primary] {background: #00C456!important;}
 	/* 选项卡 */

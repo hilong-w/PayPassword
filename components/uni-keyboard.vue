@@ -1,9 +1,9 @@
 <template>
-	<view style="overflow: hidden;box-sizing: border-box;top: -44px;">
-		<uni-shader v-show="shader"></uni-shader>
+	<view>
+		<uni-shader v-if="shader"></uni-shader>
 		<view :class="'keyboard-box ' + pattern">
 			<view class="close-button" @tap="hide">
-				<uni-icon type="close" size="14" color="#fff"></uni-icon>
+				<uni-icon type="close" size="16" color="#fff"></uni-icon>
 			</view>
 			<view class="keyboard-title">
 				<text>{{title}}</text>
@@ -21,23 +21,23 @@
 			<view class="keyboard-content mt-10">
 				<view class="table">
 					<view class="row">
-						<view @tap="inputPwd($event)" data-char="1" hover-class="cell-active">1</view>
-						<view @tap="inputPwd($event)" data-char="2" hover-class="cell-active">2</view>
-						<view @tap="inputPwd($event)" data-char="3" hover-class="cell-active">3</view>
+						<view @tap="inputPwd($event)" data-char="1">1</view>
+						<view @tap="inputPwd($event)" data-char="2">2</view>
+						<view @tap="inputPwd($event)" data-char="3">3</view>
 					</view>
 					<view class="row">
-						<view @tap="inputPwd($event)" data-char="4" hover-class="cell-active">4</view>
-						<view @tap="inputPwd($event)" data-char="5" hover-class="cell-active">5</view>
-						<view @tap="inputPwd($event)" data-char="6" hover-class="cell-active">6</view>
+						<view @tap="inputPwd($event)" data-char="4">4</view>
+						<view @tap="inputPwd($event)" data-char="5">5</view>
+						<view @tap="inputPwd($event)" data-char="6">6</view>
 					</view>
 					<view class="row">
-						<view @tap="inputPwd($event)" data-char="7" hover-class="cell-active">7</view>
-						<view @tap="inputPwd($event)" data-char="8" hover-class="cell-active">8</view>
-						<view @tap="inputPwd($event)" data-char="9" hover-class="cell-active">9</view>
+						<view @tap="inputPwd($event)" data-char="7">7</view>
+						<view @tap="inputPwd($event)" data-char="8">8</view>
+						<view @tap="inputPwd($event)" data-char="9">9</view>
 					</view>
 					<view class="row">
 						<view></view>
-						<view @tap="inputPwd($event)" data-char="0" hover-class="cell-active">0</view>
+						<view @tap="inputPwd($event)" data-char="0">0</view>
 						<view hover-class="cell-active" class="backspace" @tap="backspace">
 							<uni-icon type="backspace2"></uni-icon>
 						</view>
@@ -131,8 +131,9 @@
 </script>
 
 <style lang="scss" scoped>
+	.mt-10 {margin-top: 10px;}
 	.hidden {display: none;}
-	.keyboard-box {position: relative;background: #fff;z-index: 99999999999;bottom: 0;}
+	.keyboard-box {position: absolute;background: #fff;z-index: 99999999999;bottom: 0;width: 100%;}
 	.keyboard-box .close-button {
 		position: absolute;
 		top: 2px;
@@ -140,9 +141,7 @@
 		z-index: 9999;
 	}
 	.keyboard-box .keyboard-title {
-		/* background: #00c456; */
 		height: 30px;
-		/* border-radius: 7px 7px 50% 50%; */
 		color: #fff;
 		font-size: 12px;
 		z-index: 999;
@@ -175,7 +174,7 @@
 			height: 30px;
 			&:after {
 				content: '●';
-				font-size: 20px;
+				font-size: 16px;
 				line-height: 30px;
 				height: 30px;
 				display: block;
@@ -216,6 +215,12 @@
 	.keyboard-box .keyboard-content .row .backspace {
 		text-align: center;
 	}
+	/* .keyboard-box .keyboard-content .row .backspace:after {
+		font-family: 'icomoon'!important;
+		content: '\e900';
+		font-size: 20px;
+		line-height: 40px;
+	} */
 	.keyboard-box .keyboard-content .row view {
 		display: table-cell;
 		width: calc(100% / 3);
@@ -227,9 +232,12 @@
 		font-size: 14px;
 		font-weight: bold;
 	}
-	.keyboard-box .keyboard-content .row .cell-active {
+	.keyboard-box .keyboard-content .row view:active {
 		background: #f3f3f3;
 	}
+	/* .keyboard-box .keyboard-content .row .cell-active {
+		background: #f3f3f3;
+	} */
 	/*动画*/
 	@keyframes slidedown {
 		from {
