@@ -1,5 +1,5 @@
 <template>
-	<text :class="['fa fa-'+type]" :style="{color:color,'font-size':fontSize}" @tap="onClick()"></text>
+	<text :class="['icon icon-'+type]" :style="{color:color,'font-size':fontSize}" @tap="onClick()"></text>
 </template>
 
 <script>
